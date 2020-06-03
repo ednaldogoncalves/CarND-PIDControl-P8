@@ -33,8 +33,6 @@ sudo chmod u+x {simulator_file_name}
 3. Compile: `cmake .. && make`
 4. Run it: `./pid`. 
 
-Tips for setting up your environment can be found [here](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/0949fca6-b379-42af-a919-ee50aa304e6a/lessons/f758c44c-5e40-4e01-93b5-1a82aa4e044f/concepts/23d376c7-0195-4276-bdf0-e02f1f3c665d)
-
 
 ## Dependencies
 
@@ -71,7 +69,7 @@ My project consists of the following files:
 - **PID.cpp** The actual implementation of the PID Controller update the cross-track error to use around in the track.
 - **videos** - videos recording of your vehicle driving autonomously in the track.
 
-## Project [Rubric](https://review.udacity.com/#!/rubrics/1971/view)
+## Project [Rubric](https://review.udacity.com/#!/rubrics/1972/view)
 
 ### Compilation
 
@@ -119,30 +117,30 @@ PID controllers are a class of algorithms that can be used not only to steer sel
 
 It encompasses of three controllable parameters and if tuned properly can be incredibly effective and accurate. The three parameters are proportional gain (P), integral gain (I), and derivative gain (D), hence the name PID.
 
-- ####P component
+- #### P component
 The "P" for **proportional** means that the car will steer in proportion to the cross-track error, or CTE. The component had the most directly observable effect on the car’s behaviour. It causes the car to steer proportional (and opposite) to the car’s distance from the lane center(CTE). If the car is far to the right it steers hard to the left, if it’s slightly to the left it steers slightly to the right. CTE is essentially how far from the middle line of the road the car is. 
 If used alone, the car overshoots the central line very easily and go out of the road very quickly. An example video where this component is used alone:
 
 <p align="center">
-<img src="./src/Images/optimized_gifs/only_proportional_optimized.png"><br>
+<img src="./src/Images/optimized_gifs/only_proportional_optimized.gif"><br>
 <a href="./src/Videos/only_proportional.mp4">Download video</a>
 </p>
 
-- ####I component
+- #### I component
 The "I" for **integral** sums up all CTEs up to that point, such that too many negative CTEs (in this case, meaning the car has been to the left of the middle of the lane for awhile) will drive up this value, causing the car to turn back toward the middle, preventing the car from driving on one side of the lane the whole time. The integral portion tries to eliminate a possible bias on the controlled system that could prevent the error to be eliminated.
 If used alone, it makes the car to go in circles. In the case of the simulator, no bias is present. An example video where this component is used along:
 
 <p align="center">
-<img src="./src/Images/optimized_gifs/only_integral_optimized.png"><br>
+<img src="./src/Images/optimized_gifs/only_integral_optimized.gif"><br>
 <a href="./src/Videos/only_integral.mp4">Download video</a>
 </p>
 
-- ####D component
+- #### D component
 The "D" for **differential** is the change in CTE from one value to the next. The differential component causes the output to decrease if the process variable is increasing rapidly. The differential response is proportional to the rate of change of the process variable. Increasing the differential parameter will cause the control system to react more strongly to changes in the error term and will increase the speed of the overall control system response. Most practical control systems use very small differential parameter, because the Differential Response is highly sensitive to noise in the process variable signal. If the sensor feedback signal is noisy or if the control loop rate is too slow, the differential response can make the control system unstable.
 The differential portion helps to counteract the proportional trend to overshoot the center line by smoothing the approach to it. An example video where this component is used alone:
 
 <p align="center">
-<img src="./src/Images/optimized_gifs/only_differential_optimized.png"><br>
+<img src="./src/Images/optimized_gifs/only_differential_optimized.gif"><br>
 <a href="./src/Videos/only_differential.mp4">Download video</a>
 </p>
 
