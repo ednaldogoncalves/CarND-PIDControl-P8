@@ -2,3 +2,18 @@
 build
 tags
 .editorconfig
+src/Videos/full_results_play/scripts/techsmith-smart-player.min.js
+src/Videos/full_results_play/skins/remix/techsmith-smart-player.min.css
+src/Bkp/main_ed.cpp
+src/Bkp/PID - bkp.cpp
+src/Bkp/PID - bkp.h
+src/Bkp/PID_ed.cpp
+src/Bkp/PID_ed.h
+src/Videos/full_results_play/full_results.html
+src/Videos/full_results_play/full_results.mp4
+src/Videos/full_results_play/full_results.png
+src/Videos/full_results_play/full_results_config.xml
+src/Videos/full_results_play/full_results_embed.css
+src/Videos/full_results_play/full_results_player.html
+src/Videos/full_results_play/scripts/config_xml.js
+src/Images/quality_gifs/full_results.gif
