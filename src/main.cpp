@@ -37,6 +37,18 @@ int main() {
   /**
    * TODO: Initialize the pid variable.
    */
+   
+  // Test only Proportional.
+  //pid.Init(1, 0.0, 0.0);
+   
+  // Test only integral.
+  //pid.Init(0.0, 1.0, 0.0);
+  
+  // Test only differential.
+  //pid.Init(0.0, 0.0, 1.0);
+
+  // Final parameters.
+  pid.Init(0.15, 0.004, 2.5);
 
   h.onMessage([&pid](uWS::WebSocket<uWS::SERVER> ws, char *data, size_t length, 
                      uWS::OpCode opCode) {
@@ -52,25 +64,56 @@ int main() {
         string event = j[0].get<string>();
 
         if (event == "telemetry") {
-          // j[1] is the data JSON object
-          double cte = std::stod(j[1]["cte"].get<string>());
-          double speed = std::stod(j[1]["speed"].get<string>());
-          double angle = std::stod(j[1]["steering_angle"].get<string>());
-          double steer_value;
-          /**
-           * TODO: Calculate steering value here, remember the steering value is
-           *   [-1, 1].
-           * NOTE: Feel free to play around with the throttle and speed.
-           *   Maybe use another PID controller to control the speed!
-           */
-          
+			// j[1] is the data JSON object
+			double cte = std::stod(j[1]["cte"].get<string>());
+			double speed = std::stod(j[1]["speed"].get<string>());
+			//double angle = std::stod(j[1]["steering_angle"].get<string>());
+			double steer_value = 0.0;
+			double steering;
+			double max_steering_angle;
+			double throttle;  
+		  
+			/**
+			* TODO: Calculate steering value here, remember the steering value is
+			*   [-1, 1].
+			* NOTE: Feel free to play around with the throttle and speed.
+			*   Maybe use another PID controller to control the speed!
+			*/
+
+			pid.UpdateError(cte);
+			steer_value -= pid.TotalError();
+			
+			//To control the speed and maximum steer anlge
+			steering = rad2deg(steer_value);
+			
+			throttle = 0.5;
+			//maximum steer angle -+25 degrees
+			max_steering_angle = 25;
+
+			if (steering > max_steering_angle) {
+			  steering = max_steering_angle;
+			}
+			if (steering < - max_steering_angle) {
+			  steering = - max_steering_angle;
+			}
+			if (steering > 10 && speed > 35) {
+			  throttle = -0.5;
+			}
+
+			if (steering < -10 && speed > 35) {
+			  throttle = -0.5;
+			}
+
+			steer_value = deg2rad(steering);		   
+		   
+         
           // DEBUG
           std::cout << "CTE: " << cte << " Steering Value: " << steer_value 
                     << std::endl;
 
           json msgJson;
           msgJson["steering_angle"] = steer_value;
-          msgJson["throttle"] = 0.3;
+          msgJson["throttle"] = throttle;
           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
           std::cout << msg << std::endl;
           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);

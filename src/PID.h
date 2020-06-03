@@ -4,6 +4,29 @@
 class PID {
  public:
   /**
+   * PID Errors
+   */
+  double p_error;
+  double i_error;
+  double d_error;
+  double prev_cte;  
+
+  /**
+   * Error counters
+  **/
+  long count;
+  double errorSum;
+  double minError;
+  double maxError;
+
+  /**
+   * PID Coefficients
+   */ 
+  double Kp;
+  double Ki;
+  double Kd;
+  
+  /**
    * Constructor
    */
   PID();
@@ -15,9 +38,9 @@ class PID {
 
   /**
    * Initialize PID.
-   * @param (Kp_, Ki_, Kd_) The initial PID coefficients
+   * @param (Kp, Ki, Kd) The initial PID coefficients
    */
-  void Init(double Kp_, double Ki_, double Kd_);
+  void Init(double Kp, double Ki, double Kd);
 
   /**
    * Update the PID error variables given cross track error.
@@ -30,21 +53,21 @@ class PID {
    * @output The total PID error
    */
   double TotalError();
+  
+  /*
+  *  Returns the average error.
+  */
+  double AverageError();
 
- private:
-  /**
-   * PID Errors
-   */
-  double p_error;
-  double i_error;
-  double d_error;
+  /*
+  * Returns the min error.
+  */
+  double MinError();
 
-  /**
-   * PID Coefficients
-   */ 
-  double Kp;
-  double Ki;
-  double Kd;
+  /*
+  * Returns the max error.
+  */
+  double MaxError();
 };
 
-#endif  // PID_H
+#endif  /* PID_H */
