@@ -1,4 +1,4 @@
-# CarND - PID Controller - Poject 8
+# CarND - PID Controller - Project 8
 Udacity Self-Driving Car Engineer Nanodegree Program <br>
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
@@ -176,6 +176,6 @@ After the car drove the track without going out of it, the parameters increased 
 
 <p align="center">
 Full video of the track lap executed in the project<br>
-<a target="_blank" style="text-decoration: none" href="https://www.lgontelecom.com.br/udacity/project8/full_results.html"><img src="./src/Images/full_results.png"></a><br>
+<a target="_blank" style="text-decoration: none" href="https://www.lgontelecom.com.br/udacity/project8/full_results_player.html"><img src="./src/Images/full_results.png"></a><br>
 <a href="./src/Videos/full_results.mp4">Download video</a>
 </p>
