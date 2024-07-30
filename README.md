@@ -176,6 +176,6 @@ After the car drove the track without going out of it, the parameters increased 
 
 <p align="center">
 Full video of the track lap executed in the project<br>
-<a target="_blank" style="text-decoration: none" href="https://www.lgontelecom.com.br/udacity/project8/full_results_player.html"><img src="./src/Images/full_results.png"></a><br>
+<a target="_blank" style="text-decoration: none" href="https://drive.google.com/file/d/1OR63hE_fnXb_LXxdc1HF1IWeieVMHPwQ/view?usp=sharing"><img src="./src/Images/full_results.png"></a><br>
 <a href="./src/Videos/full_results.mp4">Download video</a>
 </p>
